@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<hibernate-mapping package="com.example.pojo.entity">
+    <class name="Category" table="category">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+
+        <property name="name" column="name" type="string" not-null="true" length="100"/>
+        <property name="description" column="description" type="text"/>
+
+        <!-- 一對多對應 -->
+        <set name="products" inverse="true" lazy="true" cascade="all">
+            <key column="category_id"/>
+            <one-to-many class="Product"/>
+        </set>
+    </class>
+</hibernate-mapping>
